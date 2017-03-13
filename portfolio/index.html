@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>The Backyard Flock</title>
+
+    <!--page icon-->
+    <link rel="icon" href="img/page-icon.png">
+
+    <!--MDL framework files-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-light_green.min.css"> 
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!--leaflet.js stylesheet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css">
+    <script defer src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
+    <!--my stylesheet-->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!--my js scripts-->
+    <script defer src="js/chickens.js"></script>
+    <script defer src="js/app.js"></script>
+
+</head>
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout__title">The Backyard Flock</span>
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a href="#tab1-panel" class="mdl-tabs__tab mdl-button mdl-button--raised mdl-js-ripple-effect is-active">The Farm</a>
+                <a href="#tab2-panel" class="mdl-tabs__tab mdl-button mdl-button--raised mdl-js-ripple-effect">Meet The Chickens</a>
+                <a href="#tab3-panel" class="mdl-tabs__tab mdl-button mdl-button--raised mdl-js-ripple-effect">Egg Calculator</a>
+                <a href="#tab4-panel" class="mdl-tabs__tab mdl-button mdl-button--raised mdl-js-ripple-effect">Benefits of Backyard Chickens</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="tab1-panel">
+                <div class="mdl-grid">
+
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-phone">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__supporting-text">
+                                <img src="img/thefarm1.jpg" alt="the backyard farm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-phone">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__supporting-text">
+                                <img src="img/carrots.jpg" alt="the backyard farm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-phone">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__supporting-text">
+                                <img src="img/thefarm4.jpg" alt="the backyard farm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-phone">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__supporting-text">
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--4-phone">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title"><h2 class="mdl-card__title-text">All About the Farm</h2></div>
+                            <div class="mdl-card__supporting-text">
+                                I grew up in a suburban environment and most of the yards in our neighborhood 
+                                were large, yet very few were growing anything edible. When I moved to Seattle  
+                                as an adult, I was impressed to see quite the opposite! I started to dabble in a 
+                                tiny apartment garden, and was able to grow most of the greens that I usually 
+                                purchase at the store or farmer's market. Since becoming a parent, 
+                                I've become even more discriminating about what our family eats. The more 
+                                I learn about the impacts of large scale commercial agriculture on our environment 
+                                and communities, the less I want to support those systems. Further, the food coming 
+                                out of commercial agriculture lacks nutritional diversity. There are few things as 
+                                tasty, nutritious, and sastisfying as fresh produce right from your garden!
+                                <br><br>Tips for success in a backyard farm and garden:
+                                <ul>
+                                    <li><b>Keep it small.</b> The first mistake we made was trying to get everything 
+                                        up and running the very first season. It takes time to build up the soil 
+                                        nutrients, especially in a backyard, which typically has compacted clay 
+                                        with very little (if any) topsoil. Starting with one growing area at a 
+                                        time and pacing ourselves minimized the amount of work we spent fixing our 
+                                        mistakes. It also helped keep morale up! Farming is hard work. </li>
+                                    <li><b>Focus on perennials.</b> Most commercial farms grow only annuals crops 
+                                         like corn, wheat, and lettuce. This results in complete replanting every 
+                                         year, intensive tilling which depletes the soil, and so much extra work!
+                                         In our garden we have tried to install a permanent edible landscape to 
+                                         reduce our own workload and to increase the resiliency of our food source. 
+                                         You see, perennial plants have natural adaptations to withstand seasonal 
+                                         and annual fluctations in conditions. They tend to survive periods of 
+                                         heat, flooding, and pest infestation better than most annual crops. 
+                                         Also, we are lazy and don't want to have to replant every spring!</li>
+                                    <li><b>Plant what you'll eat.</b> It's really easy to grow radishes just about 
+                                         anywhere in your yard, but will you want to eat them? We didn't, and so 
+                                         they ended up in with the food scraps for the chickens (and then the compost 
+                                         pile). Assess which produce you purchase the most and see if there is a 
+                                         good place in your yard for it to grow. </li>
+                                    <li><b>Choose a diversity.</b> Don't limit yourself to one type of produce, or 
+                                         even to one variety of produce. We've found mixed plantings to be the most 
+                                         sucessful. Sometimes the whiteflies love one type of kale but leave the 
+                                         others untouched. Different varieties of peas will be ready for harvest at 
+                                         different times, so by growing a mixture you'll have fresh peas every 
+                                         week. Also, learning which plants like to grow together helps to reduce 
+                                         plant stress and disease.</li>
+                                    <li><b>Be creative.</b> Creating a garden can be very fun and rewarding. Make it 
+                                         your own! There are so many ways to put the components together.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-tabs__panel" id="tab2-panel">
+                <div class="mdl-grid" id="chickens"> <!--this section is populated on the fly in app.js-->
+                </div> <!--end grid-->
+            </div>
+            <div class="mdl-tabs__panel" id="tab3-panel">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--2-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp center">
+                            <div ><img src="img/eggs.jpg" alt="fresh eggs"></div>
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Select your flock configuration and then 
+                                    <button id="calculate-button" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                                    Calculate
+                                    </button>
+                                    how many eggs you might expect:
+                                </h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <div class="mdlext-selectfield mdlext-js-selectfield mdlext-selectfield--floating-label">
+                                    <label class="mdlext-selectfield__label" for="animation-select">chicken breed:</label>
+                                    <select id="breed-select1" class="mdlext-selectfield__select"></select>
+                                    <label class="mdlext-selectfield__label" for="animation-select">number of hens:</label>
+                                    <select id="number-select1" class="mdlext-selectfield__select">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="mdlext-selectfield mdlext-js-selectfield mdlext-selectfield--floating-label">
+                                    <label class="mdlext-selectfield__label" for="animation-select">chicken breed:</label>
+                                    <select id="breed-select2" class="mdlext-selectfield__select"></select>
+                                    <label class="mdlext-selectfield__label" for="animation-select">number of hens:</label>
+                                    <select id="number-select2" class="mdlext-selectfield__select">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="mdlext-selectfield mdlext-js-selectfield mdlext-selectfield--floating-label">
+                                    <label class="mdlext-selectfield__label" for="animation-select">chicken breed:</label>
+                                    <select id="breed-select3" class="mdlext-selectfield__select"></select>
+                                    <label class="mdlext-selectfield__label" for="animation-select">number of hens:</label>
+                                    <select id="number-select3" class="mdlext-selectfield__select">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="mdlext-selectfield mdlext-js-selectfield mdlext-selectfield--floating-label">
+                                    <label class="mdlext-selectfield__label" for="animation-select">chicken breed:</label>
+                                    <select id="breed-select4" class="mdlext-selectfield__select"></select>
+                                    <label class="mdlext-selectfield__label" for="animation-select">number of hens:</label>
+                                    <select id="number-select4" class="mdlext-selectfield__select">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                This flock configuration could yield 
+                                <p id="eggTotal-month" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"></p>
+                                eggs per month and 
+                                <p id="eggTotal-year" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"></p>
+                                eggs per year!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-tabs__panel" id="tab4-panel">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--2-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp center">
+                            <div class="mdl-card__supporting-text">
+                                <h4>Benefits of Backyard Chickens</h4>
+                                The trend of keeping backyard chickens has been on the rise over the past number of years, and 
+                                it's easy to see why. Of course, there are the fresh eggs to look forward to, but did you know 
+                                that chickens have a lot else going for them?
+                                From free therapy to learning about self-sustainability, here are 20 great reasons to keep your 
+                                own backyard chickens:
+                                <h4>Fresh Eggs</h4>
+                                This is the obvious reason - you'll have a supply of fresh eggs on hand. Not to mention the 
+                                convenience, as you'll have absolutely no need to get out of your pajamas and head to the store 
+                                to make a fresh, healthy breakfast.
+                                <h4>Organic & Non-GMO</h4>
+                                Caged hens are fed a diet of corn, soy and cottonseed meals - three huge GMO crops. If you really 
+                                take the old saying "you are what you eat" to heart, then you'll be wary of eggs which come from 
+                                these hens. By keeping your own, you know exactly what they're eating and can avoid feeding them 
+                                engineered and antibiotic laden crops.
+                                <h4>Greater Nutrition</h4>
+                                Free range eggs from your backyard have been shown to have a far greater nutritional 
+                                value than nasty battery eggs. There is more than seven times the Vitamin A and 
+                                Beta Carotene (essential for good eyesight) and almost double the Vitamin E in 
+                                free range eggs. When it comes to the essential fatty acid Omega 3 (which is 
+                                necessary for heart health, healthy cholesterol levels as well as positive mental and 
+                                behavioral health) the free range variety win again with an incredible 292mg, 
+                                versus a pitiful 0.033mg in battery eggs. You'll also get less saturated fat in 
+                                free range eggs.
+                                <h4>Cruelty Free</h4>
+                                Not only will you get nutritious, organic eggs, but you can be safe in the knowledge 
+                                that your omelet is served up cruelty free. You may think you're already supporting 
+                                a cruelty free life for farmed chickens by buying free range but, the truth is, 
+                                commercially marketed "free range" eggs don't have the happy origins that the 
+                                industry would like you to believe. There is actually no definite description of 
+                                what "free range" is and, even then, less than 1% of chickens in the US are 
+                                considered to be free range.
+                                <h4>Educational Value</h4>
+                                Did you know chickens have a great memory and can differentiate between over 100 
+                                human or animal faces? They love to play, they dream, they mourn for each other 
+                                and they feel pain and distress. They also make great mothers - they talk to their 
+                                chicks while still in the egg, and turn the eggs about 50 times a day. The term 
+                                "pecking order" didn't come out of nowhere - hens have an ordered social structure 
+                                based on a hierarchy. If you make room for them in your back garden, you and your 
+                                family will get to learn all about these fascinating creatures up close. Have a 
+                                look here for even more amazing facts about chickens.
+                                <h4>Save a Life</h4>
+                                Be a hero and save ex-battery hens from the slaughterhouse. 300 million birds each 
+                                year are crammed into cages that are far too small. Why not play a part in giving 
+                                some a second chance? They'll reward you with their protein rich eggs and companionship.
+                                <h4>Free Fertilizer</h4>
+                                Maybe free chicken manure isn't something to get too excited about, but if you're 
+                                proud of your garden it can work wonders. Chicken manure is actually classed as being 
+                                one of the most desirable manures due to its high nutrient level. Utilizing this is an 
+                                important part of sustainable and organic agriculture. It's estimated that having 
+                                between 5 and 10 chickens should produce enough fertilizer to take care of your entire 
+                                vegetable garden and yard for the year. It's also great to add to your compost.
+                                <h4>Pest Control</h4>
+                                When you get your backyard chickens, you'll have a great excuse to ditch the pesticides 
+                                and chemical-laden bug killers. Your chickens will do that job for you. They eat pretty 
+                                much any bug including beetles, slugs, ticks and grasshoppers. Between a steady supply 
+                                of fertilizer and a newly slug-free garden, your veggies will never have looked so good.
+                                <h4>Cut Down on Food Waste</h4>
+                                Nationwide, food scraps make up about 17% (29 million tons) of what is sent to landfills, 
+                                and yard waste is slightly more at 33 million tons. Your chickens can help you out here too! 
+                                In addition to some chicken food, they'll eat pretty much most kitchen scraps - fruit and vegetable peelings, 
+                                bread, cooked beans, cooked rice, oatmeal, pasta - the list goes on. They can't have all 
+                                foods though so make sure you know what's bad for them too. Meat and other animal products are best avoided.
+                                <h4>Save Heritage Breeds</h4>
+                                Because only certain chickens are good for meat, and others are especially bred for maximum 
+                                egg production, today's chickens look significantly different from their ancestors.
+                                You could take on the role of conservationist by adding a few rare heritage breeds to 
+                                your yard. Different breeds have different characteristics so choose which breed is 
+                                right for you based on their temperament, and your location and available space.
+                                <h4>Weed Control</h4>
+                                Chickens may just be the perfect sidekick for every gardener. A source of pest control 
+                                and manure all in one, they also will rid your garden of those invasive weeds that 
+                                pop up all over the place. As they scratch and claw the ground, they eat and disperse 
+                                all those weed seeds that have blown in. Next year, you'll be amazed at your neat and tidy garden.
+                                <h4>A Source of Therapy</h4>
+                                Move over cats and dogs, these beautiful creatures could be the next therapy animals! 
+                                They're already being used to help those with autism as well as the elderly.
+                                Keeping chickens is seen as therapeutic for children on the autism spectrum by getting 
+                                the kids involved in feeding and caring for the chickens, thereby promoting independent 
+                                living skills. They have also been used for patients with dementia and other psychiatric 
+                                disorders. Because chickens are always moving around, pecking and socializing, they're seen as calming.
+                                <h4>Learn Where Food Comes From</h4>
+                                Keeping chickens is a great way for kids to learn about nature, agriculture and the 
+                                responsibility of caring for animals. It's also a fantastic way for both kids and adults 
+                                to gain respect for these intelligent creatures that produce food for us.
+                                <h4>Entertainment Value</h4>
+                                Because chickens are clever creatures, each occupying a different role in the pecking 
+                                order, keeping them in your backyard gives you a chance to see the individual personalities 
+                                and quirks of each of your new pets.
+                                <h4>Cut Down on Food Miles</h4>
+                                We've all heard of food miles - the distance over which a food item is transported 
+                                from producer to consumer. Well, you can't cut down on this particular type of environmental 
+                                impact much more than keeping a source of food in your own back garden. As you also clock 
+                                up miles getting waste foods away from you and to the landfill, it seems these useful 
+                                creatures save you miles twice when they gobble up your table scraps too!
+                                <h4>A Lesson in Self-Sustainability</h4>
+                                If you already grow your own vegetables and keep a compost heap then you're heading 
+                                in the right direction to becoming self-sustaining. Keeping your own chickens is the 
+                                next step - for the eggs, the pest and weed control and the simple source of fertilizer.
+                                Plus, you don't have to worry about egg shortages or recalls due to salmonella outbreaks!
+                                <h4>A Taste of Country Life</h4>
+                                Did you always want to live in the country but your job or your family meant you needed 
+                                to be by the city? Well, keeping backyard chickens is one way of bringing country life to the city!
+                                They don't need much room to be happy (of course, it depends on how many you keep) and  
+                                you'll get a taste of keeping your own animals and collecting your own food - fresh from your mini-farm.
+                                <h4>The Social Aspect</h4>
+                                Would you believe there are entire communities dedicated to raising backyard chickens? 
+                                Just do a quick internet search and you'll see. It's a great way to share your newfound 
+                                passion with others, to pick up some tips and tricks, and to brag about how great 
+                                the new additions to your family are. It's good for real-life socializing too. Mentioning you 
+                                keep chickens is a great conversation starter and I'll bet your kid's friends want to 
+                                come over and check out these cool creatures.
+                                <h4>It's Cheap</h4>
+                                Yes, there are initial start-up costs. You'll need to buy or build a chicken coop, ensure 
+                                your new pets are kept safe from predators and invest in food and feeding equipment.
+                                Once it's all set up though, it's relatively inexpensive to care for these quirky ladies. 
+                                You'll be cutting down on household waste (and garbage costs), you'll have rich soil to 
+                                grow your own crops, you won't need to splurge on weed killer or insect repellent and, 
+                                of course, you'll get cheap organic eggs - which can sometimes be a little pricey in the store. 
+                                Don't forget the free therapy, companionship and amusement.
+                                All in all, it's a pretty good deal!
+                                <h4>A Fun Hobby</h4>
+                                What else would you get up to on a Sunday afternoon than spend time with your chicks? 
+                                Sure, it might seem like an odd choice of pastime to some - but so is stamp collecting.
+                                As hobbies go, it's a pretty low-maintenance one and can be a lot more rewarding than making a jigsaw puzzle.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+  </main>
+
+<footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo">The Backyard Flock</div>
+        <ul class="mdl-mini-footer__link-list">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+        </ul>
+    </div>
+    <div class="mdl-mini-footer__right-section">
+        &#9400; 2017
+    </div>
+</footer>
+</div>
+
+
+</body>
+</html>

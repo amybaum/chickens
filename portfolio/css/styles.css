@@ -1,0 +1,46 @@
+.mdl-layout {
+    background: url('../img/background.jpg') center / cover;
+}
+
+.mdl-cell > .mdl-card, .mdl-card__media > img {
+    width: 100%;
+}
+
+.mdl-layout__title, .mdl-navigation__link, .mdl-layout__drawer, .mdl-card__actions > .mdl-button, .mdl-badge { 
+    font-weight: bold;
+}
+
+.mdl-tabs__tab {
+    font-weight: 800;
+    font-size: 1.5em;
+    color: #009688; // is there a way to reference the mdl --primary-color variable?
+}
+
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+    color: #b2ff59;  // is there a way to reference the mdl --accent-color variable?
+}
+
+.mdl-mini-footer {
+    height: 1%;
+    background: transparent;
+    color: #b2ff59;
+}
+
+.mdl-badge {
+    text-transform: uppercase;
+}
+
+#map {
+    height: 180px;
+}
+
+/* css to customize popup message box  */
+.popupMsgBox .leaflet-popup-tip,
+.popupMsgBox .leaflet-popup-content-wrapper {
+    background: #e0e0e0;
+    color: #234c5e;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
