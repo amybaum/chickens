@@ -5,5 +5,5 @@
 
 > At home, we have an urban farm and keep a flock of backyard chickens. I created this site to document our flock and to educate others on how rewarding and fun it can be to keep your own flock of backyard chickens.
 
-> [My Backyard Chickens](portfolio "backyard chickens")
+> [The Backyard Flock](https://amybaum.github.io/chickens/portfolio/ "The Backyard Flock")
 
